@@ -97,4 +97,17 @@
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
+
+  // ----- 6. Hero peek-a-boo, then idle float -----
+  const heroAvatar = document.querySelector(".hero-avatar");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (heroAvatar && reduceMotion) {
+    heroAvatar.classList.add("hero-avatar--live");
+  } else if (heroAvatar) {
+    heroAvatar.addEventListener("animationend", function onPeek(e) {
+      if (e.animationName !== "peekaboo") return;
+      heroAvatar.classList.add("hero-avatar--live");
+      heroAvatar.removeEventListener("animationend", onPeek);
+    });
+  }
 })();

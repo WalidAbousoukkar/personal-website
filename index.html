@@ -213,11 +213,81 @@
       display: flex; gap: 14px; flex-wrap: wrap;
       animation: fadeUp 0.6s 0.34s ease both;
     }
-    .hero-avatar-wrap { flex-shrink: 0; animation: fadeUp 0.8s 0.2s ease both; }
-    .hero-avatar {
-      width: 280px; height: 280px; border-radius: 50%; object-fit: cover;
+    .hero-avatar-wrap {
+      flex-shrink: 0; position: relative;
+      width: 280px; height: 280px;
+      animation: peekWobble 4.4s 0.45s ease-in-out both;
+    }
+    .hero-avatar-wrap::before {
+      content: '';
+      position: absolute; inset: -14px; border-radius: 50%;
+      border: 2px solid rgba(99,179,237,0.55);
+      box-shadow: 0 0 28px rgba(99,179,237,0.28);
+      pointer-events: none;
+      animation: peekRing 4.4s 0.45s ease-out both;
+    }
+    .hero-avatar-clip {
+      width: 100%; height: 100%; border-radius: 50%;
+      overflow: hidden; position: relative; z-index: 1;
       border: 2px solid var(--border-glow);
       box-shadow: 0 0 0 8px rgba(99,179,237,0.05), 0 0 60px rgba(99,179,237,0.18);
+      background: var(--bg-surface);
+    }
+    .hero-avatar {
+      width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+      display: block;
+      transform: translateY(110%);
+      animation: peekaboo 4.4s 0.45s cubic-bezier(0.22, 1.15, 0.32, 1) both;
+    }
+    .hero-avatar--live { animation: avatarFloat 3.8s ease-in-out infinite; }
+    .hero-avatar-wrap:hover .hero-avatar--live {
+      animation: none;
+      transform: translateY(22%);
+      transition: transform 0.45s cubic-bezier(0.34, 1.4, 0.64, 1);
+    }
+    .hero-peek-bubble {
+      position: absolute; top: 10px; right: -6px; z-index: 2;
+      width: 52px; height: 52px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.45rem;
+      background: var(--bg-card); border: 1px solid var(--border-glow);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      pointer-events: none;
+      animation: bubblePop 0.5s 4.5s cubic-bezier(0.34, 1.5, 0.64, 1) both;
+    }
+    @keyframes peekaboo {
+      0%   { transform: translateY(110%); }
+      10%  { transform: translateY(52%); }
+      18%  { transform: translateY(52%); }
+      26%  { transform: translateY(110%); }
+      34%  { transform: translateY(110%); }
+      46%  { transform: translateY(36%); }
+      58%  { transform: translateY(36%); }
+      66%  { transform: translateY(110%); }
+      74%  { transform: translateY(110%); }
+      90%  { transform: translateY(-8%); }
+      100% { transform: translateY(0); }
+    }
+    @keyframes peekWobble {
+      0%, 26%, 34%, 66%, 74%, 100% { transform: rotate(0); }
+      10%, 18% { transform: rotate(-4deg); }
+      46%, 58% { transform: rotate(4deg); }
+      90% { transform: rotate(-2deg); }
+    }
+    @keyframes peekRing {
+      0%, 26%, 34%, 66%, 74%, 100% { opacity: 0; transform: scale(0.92); }
+      10%, 18% { opacity: 0.85; transform: scale(1.05); }
+      46%, 58% { opacity: 1; transform: scale(1.08); }
+      90% { opacity: 0.45; transform: scale(1.03); }
+    }
+    @keyframes avatarFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes bubblePop {
+      0%   { opacity: 0; transform: scale(0.4) rotate(-12deg); }
+      70%  { opacity: 1; transform: scale(1.12) rotate(6deg); }
+      100% { opacity: 1; transform: scale(1) rotate(0); }
     }
     .hero-scroll {
       position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
@@ -275,7 +345,7 @@
     /* ═══════════════════════════════════════════════
        ABOUT
     ═══════════════════════════════════════════════ */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; }
     .about-profile-card {
       display: flex; align-items: center; gap: 18px;
       padding: 20px 24px; background: var(--bg-card);
@@ -330,32 +400,30 @@
     }
     .about-statement:hover { border-color: var(--border-glow); }
 
+    .about-skills { display: flex; flex-direction: column; }
+    .skills-panel {
+      flex: 1; display: flex; flex-direction: column;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 20px 22px;
+      transition: border-color 0.2s;
+    }
+    .skills-panel:hover { border-color: var(--border-glow); }
     .skills-heading {
       font-family: var(--font-display); font-size: 1rem;
-      font-weight: 700; color: var(--text); margin-bottom: 18px; letter-spacing: -0.02em;
+      font-weight: 700; color: var(--text); margin-bottom: 16px; letter-spacing: -0.02em;
+      flex-shrink: 0;
     }
-    .skills-groups { display: flex; flex-direction: column; gap: 14px; }
-    .skills-group {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 16px 18px; transition: border-color 0.2s;
+    .skills-grid {
+      flex: 1; display: grid; grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 1fr; gap: 12px;
     }
-    .skills-group:hover { border-color: var(--border-glow); }
-    .skills-group-title {
-      font-family: var(--font-mono); font-size: 0.72rem;
-      color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase;
-      display: block; margin-bottom: 12px; font-weight: 600;
+    .skills-grid .about-info-box {
+      display: flex; flex-direction: column; justify-content: center;
+      margin: 0;
     }
-    .skills-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
-    .skills-list li {
-      display: flex; align-items: center; gap: 5px;
-      font-size: 0.82rem; font-weight: 500; color: var(--text-dim);
-      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
-      padding: 8px 14px; border-radius: 8px; transition: all 0.22s ease;
-    }
-    .skills-list li:hover {
-      background: rgba(99,179,237,0.12); border-color: rgba(99,179,237,0.3);
-      color: var(--text); transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    .skills-grid .about-info-box--wide { grid-column: 1 / -1; }
+    .skills-grid .about-info-value {
+      font-size: 0.8rem; line-height: 1.55; color: var(--text-dim); font-weight: 500;
     }
 
     /* ═══════════════════════════════════════════════
@@ -640,6 +708,16 @@
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
+    @media (prefers-reduced-motion: reduce) {
+      .hero-avatar,
+      .hero-avatar-wrap,
+      .hero-avatar-wrap::before,
+      .hero-peek-bubble {
+        animation: none; transform: none;
+      }
+      .hero-avatar-wrap::before { opacity: 0; }
+    }
+
     /* ═══════════════════════════════════════════════
        RESPONSIVE
     ═══════════════════════════════════════════════ */
@@ -650,8 +728,12 @@
       .hero-inner { flex-direction: column-reverse; text-align: center; gap: 32px; }
       .about-profile-card { flex-wrap: wrap; }
       .hero-cta { justify-content: center; }
-      .hero-avatar { width: 200px; height: 200px; }
+      .hero-avatar-wrap { width: 200px; height: 200px; }
+      .hero-peek-bubble { width: 42px; height: 42px; font-size: 1.2rem; top: 10px; right: 2px; }
       .about-grid, .experience-education-grid { grid-template-columns: 1fr; }
+      .about-skills { display: block; }
+      .skills-panel { display: block; }
+      .skills-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
       .projects-grid { grid-template-columns: 1fr; }
       .nav-menu { display: none; }
       .nav-toggle { display: block; }
@@ -712,7 +794,10 @@
           </div>
         </div>
         <div class="hero-avatar-wrap">
-          <img src="images/avatar.png" alt="Walid Abousoukkar" class="hero-avatar" width="280" height="280" onerror="this.src='images/avatar.jpg';this.onerror=null;">
+          <div class="hero-avatar-clip">
+            <img src="images/avatar.png" alt="Walid Abousoukkar" class="hero-avatar" width="280" height="280" onerror="this.src='images/avatar.jpg';this.onerror=null;">
+          </div>
+          <span class="hero-peek-bubble" aria-hidden="true">👋</span>
         </div>
       </div>
       <div class="hero-scroll" aria-hidden="true">
@@ -761,37 +846,37 @@
             </div>
           </div>
           <div class="about-skills">
-            <h3 class="skills-heading">Technical skills</h3>
-            <div class="skills-groups">
-              <div class="skills-group">
-                <span class="skills-group-title">Frontend</span>
-                <ul class="skills-list">
-                  <li>🟨 JavaScript</li><li>🔷 TypeScript</li><li>⚛️ React</li>
-                  <li>🅰️ Angular</li><li>▲ Next.js</li><li>📄 HTML5</li>
-                  <li>🎨 CSS3</li><li>💨 Tailwind</li><li>⚡ Vite</li>
-                </ul>
-              </div>
-              <div class="skills-group">
-                <span class="skills-group-title">Backend &amp; data</span>
-                <ul class="skills-list">
-                  <li>🐍 Python</li><li>☕ Java</li><li># C / C#</li>
-                  <li>🟢 Node.js</li><li>🌸 Flask</li><li>🍃 MongoDB</li>
-                  <li>🐘 PostgreSQL</li><li>🐬 MySQL</li><li>🔌 REST APIs</li>
-                </ul>
-              </div>
-              <div class="skills-group">
-                <span class="skills-group-title">Tools &amp; DevOps</span>
-                <ul class="skills-list">
-                  <li>🐳 Docker</li><li>⎈ Kubernetes</li><li>☁️ AWS</li>
-                  <li>📦 Git</li><li>🔄 CI/CD</li><li>🐧 Linux</li>
-                  <li>📋 Jira</li><li>🧪 Selenium</li>
-                </ul>
-              </div>
-              <div class="skills-group">
-                <span class="skills-group-title">ML &amp; data</span>
-                <ul class="skills-list">
-                  <li>🤖 TensorFlow</li><li>🔥 PyTorch</li><li>🐼 Pandas</li>
-                </ul>
+            <div class="skills-panel">
+              <h3 class="skills-heading">Technical skills</h3>
+              <div class="skills-grid">
+                <div class="about-info-box">
+                  <span class="about-info-label">Languages</span>
+                  <p class="about-info-value">🐍 Python · ☕ Java · 🟨 JavaScript · 🔷 TypeScript · 🗄️ SQL · C</p>
+                </div>
+                <div class="about-info-box">
+                  <span class="about-info-label">Frontend</span>
+                  <p class="about-info-value">⚛️ React · 🅰️ Angular · ▲ Next.js · 📄 HTML/CSS · 💨 Tailwind</p>
+                </div>
+                <div class="about-info-box">
+                  <span class="about-info-label">Backend</span>
+                  <p class="about-info-value">🟢 Node.js · 🌸 Flask · 🔌 REST APIs</p>
+                </div>
+                <div class="about-info-box">
+                  <span class="about-info-label">Databases &amp; Data</span>
+                  <p class="about-info-value">🐘 PostgreSQL · 🐬 MySQL · 🍃 MongoDB · 🐼 Pandas · 🔢 NumPy · 📓 Jupyter</p>
+                </div>
+                <div class="about-info-box">
+                  <span class="about-info-label">Testing</span>
+                  <p class="about-info-value">🧪 Selenium · 📮 Postman · ✅ JUnit · PyTest</p>
+                </div>
+                <div class="about-info-box">
+                  <span class="about-info-label">Analytics</span>
+                  <p class="about-info-value">📊 Excel · 📈 Tableau · 📉 Power BI · 📐 Matplotlib</p>
+                </div>
+                <div class="about-info-box about-info-box--wide">
+                  <span class="about-info-label">DevOps &amp; Tools</span>
+                  <p class="about-info-value">📦 Git · 🐳 Docker · ☁️ AWS · 🔄 CI/CD · ⚙️ GitHub Actions · 🐧 Linux · 📋 Jira</p>
+                </div>
               </div>
             </div>
           </div>
@@ -811,26 +896,26 @@
                 <div class="timeline-marker"></div>
                 <div class="timeline-content">
                   <div class="timeline-header">
-                    <img src="images/chilis-logo.png" alt="Chili's" class="timeline-logo" width="40" height="40">
+                    <img src="images/mbta-logo.png" alt="MBTA" class="timeline-logo" width="40" height="40">
                     <div>
-                      <h4>Server / Bartender</h4>
-                      <p class="timeline-meta">Chili's Grill &amp; Bar · Braintree, MA · June 2022 – Present</p>
+                      <h4>Red Line Heavy Rail Operator</h4>
+                      <p class="timeline-meta">Massachusetts Bay Transportation Authority · Boston, MA · June 2026 – Present</p>
                     </div>
                   </div>
-                  <p>Lead by example in a fast-paced team environment, mentoring new hires and keeping service smooth during peak hours. Recognized for strong communication and problem-solving under pressure, helping build customer loyalty and team performance.</p>
+                  <p>Operate Red Line trains safely and efficiently while adhering to MBTA operating rules and procedures. Coordinate with Operations Control to respond to service conditions and maintain safe, reliable operations.</p>
                 </div>
               </article>
               <article class="timeline-item">
                 <div class="timeline-marker"></div>
                 <div class="timeline-content">
                   <div class="timeline-header">
-                    <img src="images/umassd-logo.png" alt="UMass Dartmouth" class="timeline-logo" width="40" height="40">
+                    <img src="images/chilis-logo.png" alt="Chili's" class="timeline-logo" width="40" height="40">
                     <div>
-                      <h4>Front Desk Attendant</h4>
-                      <p class="timeline-meta">University of Massachusetts Dartmouth · Sep 2021 – May 2023</p>
+                      <h4>Server / Bartender</h4>
+                      <p class="timeline-meta">Chili's Grill &amp; Bar · Braintree, MA · June 2022 – June 2026</p>
                     </div>
                   </div>
-                  <p>Work-study role in customer service and front-desk operations, supporting campus operations and community engagement.</p>
+                  <p>Mentored new hires while maintaining efficiency in a fast-paced environment. Delivered strong customer service through effective communication and problem-solving under pressure.</p>
                 </div>
               </article>
               <article class="timeline-item">
