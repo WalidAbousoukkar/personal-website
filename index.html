@@ -520,10 +520,10 @@
     }
     .project-card:hover { transform: translateY(-6px); }
     .project-card.project-card--kms:hover {
-      border-color: rgba(30,58,138,0.5);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(30,58,138,0.2);
+      border-color: rgba(52,211,153,0.5);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(52,211,153,0.18);
     }
-    .project-card.project-card--connect:hover {
+    .project-card.project-card--site:hover {
       border-color: rgba(59,130,246,0.5);
       box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(59,130,246,0.2);
     }
@@ -535,12 +535,12 @@
       height: 175px; display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
     }
-    .project-visual--kms { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%); }
-    .project-visual--connect { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%); }
+    .project-visual--kms { background: linear-gradient(135deg, #071510 0%, #064e3b 50%, #0f172a 100%); }
+    .project-visual--site { background: #060810; }
     .project-visual--redline { background: linear-gradient(135deg, #0f172a 0%, #3f1018 50%, #0f172a 100%); }
     .project-visual svg { width: 100%; height: 100%; object-fit: contain; }
-    .project-visual--kms svg { color: #3b82f6; }
-    .project-visual--connect svg { color: #60a5fa; }
+    .project-visual img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
+    .project-visual--kms svg { color: #34d399; }
     .project-visual--redline svg { color: #fb7185; }
     .project-card > *:not(.project-visual) { padding: 0 20px; }
     .project-title {
@@ -561,23 +561,25 @@
       background: rgba(99,179,237,0.18); border-color: rgba(99,179,237,0.4);
       transform: translateY(-1px);
     }
-    .project-card--kms .project-tag { color: #60a5fa; background: rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.25); }
-    .project-card--kms .project-tag:hover { background: rgba(59,130,246,0.2); border-color: rgba(59,130,246,0.4); }
-    .project-card--connect .project-tag { color: #93c5fd; background: rgba(37,99,235,0.12); border-color: rgba(37,99,235,0.25); }
-    .project-card--connect .project-tag:hover { background: rgba(37,99,235,0.2); border-color: rgba(37,99,235,0.4); }
+    .project-card--kms .project-tag { color: #6ee7b7; background: rgba(52,211,153,0.12); border-color: rgba(52,211,153,0.28); }
+    .project-card--kms .project-tag:hover { background: rgba(52,211,153,0.2); border-color: rgba(52,211,153,0.45); }
+    .project-card--site .project-tag { color: #93c5fd; background: rgba(37,99,235,0.12); border-color: rgba(37,99,235,0.25); }
+    .project-card--site .project-tag:hover { background: rgba(37,99,235,0.2); border-color: rgba(37,99,235,0.4); }
     .project-card--redline .project-tag { color: #fda4af; background: rgba(225,29,72,0.12); border-color: rgba(225,29,72,0.28); }
     .project-card--redline .project-tag:hover { background: rgba(225,29,72,0.2); border-color: rgba(225,29,72,0.45); }
     .project-desc {
       font-size: 0.9rem; color: var(--text-dim); line-height: 1.8;
       padding-bottom: 22px; letter-spacing: 0.015em;
     }
+    .project-card--site .project-desc,
     .project-card--redline .project-desc { padding-bottom: 12px; }
     .project-link {
       display: inline-flex; align-items: center; gap: 6px;
       margin-bottom: 22px;
       font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500;
-      color: #fda4af; text-decoration: none;
+      color: #93c5fd; text-decoration: none;
     }
+    .project-card--redline .project-link { color: #fda4af; }
     .project-link:hover { color: var(--text); }
 
     /* ═══════════════════════════════════════════════
@@ -871,7 +873,7 @@
                 </div>
                 <div class="about-info-box">
                   <span class="about-info-label">Databases &amp; Data</span>
-                  <p class="about-info-value">🐘 PostgreSQL · 🐬 MySQL · 🍃 MongoDB · 🐼 Pandas · 🔢 NumPy · 📓 Jupyter</p>
+                  <p class="about-info-value">🐘 PostgreSQL · 🐬 MySQL · 🍃 MongoDB · 🗃️ SQLite · 🐼 Pandas · 🔢 NumPy</p>
                 </div>
                 <div class="about-info-box">
                   <span class="about-info-label">Testing</span>
@@ -982,81 +984,34 @@
             <div class="project-visual project-visual--kms" aria-hidden="true">
               <svg viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
                 <defs>
-                  <linearGradient id="kmsGrad1" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#1e3a5f"/>
+                  <linearGradient id="kmsGreen" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#052e22"/>
                     <stop offset="100%" stop-color="#0f172a"/>
                   </linearGradient>
-                  <linearGradient id="kmsPanelGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#1e3a8a" stop-opacity="0.5"/>
-                    <stop offset="100%" stop-color="#0f172a" stop-opacity="0.2"/>
-                  </linearGradient>
-                  <linearGradient id="kmsAccent" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stop-color="#3b82f6"/>
-                    <stop offset="100%" stop-color="#60a5fa"/>
-                  </linearGradient>
-                  <filter id="kmsGlow">
-                    <feGaussianBlur stdDeviation="2.5" result="blur"/>
-                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                  </filter>
                 </defs>
-                <rect width="320" height="180" fill="url(#kmsGrad1)"/>
-                <line x1="0" y1="45" x2="320" y2="45" stroke="#3b82f6" stroke-opacity="0.08" stroke-width="1"/>
-                <line x1="0" y1="90" x2="320" y2="90" stroke="#3b82f6" stroke-opacity="0.08" stroke-width="1"/>
-                <line x1="0" y1="135" x2="320" y2="135" stroke="#3b82f6" stroke-opacity="0.08" stroke-width="1"/>
-                <line x1="80" y1="0" x2="80" y2="180" stroke="#3b82f6" stroke-opacity="0.08" stroke-width="1"/>
-                <line x1="160" y1="0" x2="160" y2="180" stroke="#3b82f6" stroke-opacity="0.08" stroke-width="1"/>
-                <line x1="240" y1="0" x2="240" y2="180" stroke="#3b82f6" stroke-opacity="0.08" stroke-width="1"/>
-                <rect x="14" y="14" width="80" height="152" rx="6" fill="#0d1f3c" stroke="#1e3a8a" stroke-opacity="0.6" stroke-width="1"/>
-                <rect x="22" y="22" width="40" height="4" rx="2" fill="#3b82f6" fill-opacity="0.7"/>
-                <rect x="22" y="34" width="56" height="10" rx="3" fill="#1e3a8a" fill-opacity="0.8"/>
-                <rect x="26" y="37" width="6" height="4" rx="1" fill="#3b82f6" fill-opacity="0.9"/>
-                <rect x="36" y="37" width="30" height="4" rx="1" fill="#60a5fa" fill-opacity="0.5"/>
-                <rect x="22" y="50" width="56" height="10" rx="3" fill="#0f172a" fill-opacity="0.5"/>
-                <rect x="26" y="53" width="6" height="4" rx="1" fill="#60a5fa" fill-opacity="0.5"/>
-                <rect x="36" y="53" width="24" height="4" rx="1" fill="#60a5fa" fill-opacity="0.3"/>
-                <rect x="22" y="66" width="56" height="10" rx="3" fill="#0f172a" fill-opacity="0.5"/>
-                <rect x="26" y="69" width="6" height="4" rx="1" fill="#60a5fa" fill-opacity="0.5"/>
-                <rect x="36" y="69" width="36" height="4" rx="1" fill="#60a5fa" fill-opacity="0.3"/>
-                <rect x="22" y="82" width="56" height="10" rx="3" fill="#0f172a" fill-opacity="0.5"/>
-                <rect x="26" y="85" width="6" height="4" rx="1" fill="#60a5fa" fill-opacity="0.5"/>
-                <rect x="36" y="85" width="20" height="4" rx="1" fill="#60a5fa" fill-opacity="0.3"/>
-                <line x1="22" y1="102" x2="78" y2="102" stroke="#1e3a8a" stroke-opacity="0.5" stroke-width="1"/>
-                <rect x="22" y="108" width="56" height="10" rx="3" fill="#0f172a" fill-opacity="0.5"/>
-                <rect x="26" y="111" width="6" height="4" rx="1" fill="#818cf8" fill-opacity="0.5"/>
-                <rect x="36" y="111" width="28" height="4" rx="1" fill="#818cf8" fill-opacity="0.3"/>
-                <rect x="22" y="124" width="56" height="10" rx="3" fill="#0f172a" fill-opacity="0.5"/>
-                <rect x="26" y="127" width="6" height="4" rx="1" fill="#818cf8" fill-opacity="0.5"/>
-                <rect x="36" y="127" width="20" height="4" rx="1" fill="#818cf8" fill-opacity="0.3"/>
-                <rect x="104" y="14" width="202" height="152" rx="6" fill="#0d1f3c" stroke="#1e3a8a" stroke-opacity="0.5" stroke-width="1"/>
-                <rect x="112" y="22" width="160" height="18" rx="5" fill="#0f172a" stroke="#1e3a8a" stroke-opacity="0.8" stroke-width="1"/>
-                <circle cx="124" cy="31" r="4" stroke="#3b82f6" stroke-opacity="0.7" stroke-width="1.2" fill="none"/>
-                <line x1="127" y1="34" x2="130" y2="37" stroke="#3b82f6" stroke-opacity="0.7" stroke-width="1.2"/>
-                <rect x="134" y="28" width="24" height="5" rx="1" fill="#3b82f6" fill-opacity="0.25"/>
-                <rect x="158" y="27" width="1.5" height="7" rx="1" fill="#3b82f6" fill-opacity="0.9">
-                  <animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite"/>
-                </rect>
-                <rect x="278" y="22" width="20" height="18" rx="5" fill="url(#kmsAccent)" fill-opacity="0.9"/>
-                <path d="M285 28l4 3-4 3" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <rect x="112" y="48" width="186" height="28" rx="4" fill="#1e3a8a" fill-opacity="0.4" stroke="#3b82f6" stroke-opacity="0.3" stroke-width="1"/>
-                <rect x="120" y="54" width="8" height="10" rx="1" fill="#3b82f6" fill-opacity="0.7"/>
-                <rect x="132" y="55" width="100" height="4" rx="1" fill="#93c5fd" fill-opacity="0.8"/>
-                <rect x="132" y="63" width="68" height="3" rx="1" fill="#60a5fa" fill-opacity="0.35"/>
-                <rect x="112" y="48" width="186" height="2" rx="1" fill="#3b82f6" fill-opacity="0.15">
-                  <animate attributeName="y" values="48;74;48" dur="2.5s" repeatCount="indefinite" calcMode="ease-in-out"/>
-                  <animate attributeName="opacity" values="0.5;0;0.5" dur="2.5s" repeatCount="indefinite"/>
-                </rect>
-                <rect x="112" y="82" width="186" height="28" rx="4" fill="#0f172a" fill-opacity="0.6"/>
-                <rect x="120" y="88" width="8" height="10" rx="1" fill="#60a5fa" fill-opacity="0.4"/>
-                <rect x="132" y="89" width="80" height="4" rx="1" fill="#93c5fd" fill-opacity="0.5"/>
-                <rect x="132" y="97" width="110" height="3" rx="1" fill="#60a5fa" fill-opacity="0.2"/>
-                <rect x="112" y="116" width="186" height="28" rx="4" fill="#0f172a" fill-opacity="0.6"/>
-                <rect x="120" y="122" width="8" height="10" rx="1" fill="#60a5fa" fill-opacity="0.4"/>
-                <rect x="132" y="123" width="120" height="4" rx="1" fill="#93c5fd" fill-opacity="0.5"/>
-                <rect x="132" y="131" width="55" height="3" rx="1" fill="#60a5fa" fill-opacity="0.2"/>
-                <circle cx="296" cy="20" r="3" fill="#3b82f6" fill-opacity="0.9" filter="url(#kmsGlow)">
-                  <animate attributeName="opacity" values="0.9;0.3;0.9" dur="2s" repeatCount="indefinite"/>
-                </circle>
-                <rect x="280" y="18" width="12" height="4" rx="1" fill="#3b82f6" fill-opacity="0.4"/>
+                <rect width="320" height="180" fill="url(#kmsGreen)"/>
+                <rect x="16" y="14" width="288" height="152" rx="12" fill="#071510" stroke="#34d399" stroke-opacity="0.4" stroke-width="1.2"/>
+                <rect x="16" y="14" width="78" height="152" rx="12" fill="#0b1f18"/>
+                <rect x="78" y="14" width="16" height="152" fill="#0b1f18"/>
+                <text x="30" y="38" fill="#6ee7b7" font-size="9" font-family="ui-monospace, monospace" letter-spacing="1.2">LIBRARY</text>
+                <rect x="28" y="50" width="52" height="16" rx="5" fill="#34d399" fill-opacity="0.18" stroke="#6ee7b7" stroke-opacity="0.35"/>
+                <text x="36" y="61" fill="#ecfdf5" font-size="8" font-family="system-ui, sans-serif">Manuals</text>
+                <text x="36" y="84" fill="#a7f3d0" font-size="8" font-family="system-ui, sans-serif">Drawings</text>
+                <text x="36" y="102" fill="#a7f3d0" font-size="8" font-family="system-ui, sans-serif">Reports</text>
+                <text x="36" y="120" fill="#a7f3d0" font-size="8" font-family="system-ui, sans-serif">Admin</text>
+                <text x="108" y="40" fill="#ecfdf5" font-size="13" font-family="system-ui, sans-serif" font-weight="700">Search documents</text>
+                <rect x="108" y="50" width="180" height="22" rx="7" fill="#052e22" stroke="#34d399" stroke-opacity="0.45"/>
+                <circle cx="120" cy="61" r="4" stroke="#6ee7b7" stroke-width="1.2" fill="none"/>
+                <text x="130" y="65" fill="#d1fae5" font-size="9" font-family="system-ui, sans-serif">air-gapped manuals</text>
+                <rect x="108" y="82" width="180" height="22" rx="6" fill="#34d399" fill-opacity="0.14" stroke="#6ee7b7" stroke-opacity="0.3"/>
+                <text x="118" y="96" fill="#ecfdf5" font-size="9" font-family="system-ui, sans-serif">Technical manual</text>
+                <text x="278" y="96" text-anchor="end" fill="#6ee7b7" font-size="8" font-family="ui-monospace, monospace">PDF</text>
+                <rect x="108" y="110" width="180" height="22" rx="6" fill="#0f172a" fill-opacity="0.55"/>
+                <text x="118" y="124" fill="#d1fae5" font-size="9" font-family="system-ui, sans-serif">Systems interface notes</text>
+                <text x="278" y="124" text-anchor="end" fill="#6ee7b7" font-size="8" font-family="ui-monospace, monospace">DOC</text>
+                <rect x="108" y="138" width="180" height="22" rx="6" fill="#0f172a" fill-opacity="0.55"/>
+                <text x="118" y="152" fill="#d1fae5" font-size="9" font-family="system-ui, sans-serif">Test procedure 14B</text>
+                <text x="278" y="152" text-anchor="end" fill="#6ee7b7" font-size="8" font-family="ui-monospace, monospace">PDF</text>
               </svg>
             </div>
             <h3 class="project-title">Knowledge Management System (NUWC)</h3>
@@ -1068,75 +1023,18 @@
             </ul>
             <p class="project-desc">Built a searchable document platform for the Naval Undersea Warfare Center, supporting both networked and air-gapped environments. Three-tier architecture with tokenized full-text search, role-based access, and admin tools, deployed on Windows Server.</p>
           </article>
-          <article class="project-card project-card--connect">
-            <div class="project-visual project-visual--connect" aria-hidden="true">
-              <svg viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-                <defs>
-                  <linearGradient id="connGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#0f172a"/>
-                    <stop offset="100%" stop-color="#0c1a2e"/>
-                  </linearGradient>
-                  <linearGradient id="connAccent" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stop-color="#2563eb"/>
-                    <stop offset="100%" stop-color="#60a5fa"/>
-                  </linearGradient>
-                  <linearGradient id="connLike" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stop-color="#f43f5e"/>
-                    <stop offset="100%" stop-color="#fb7185"/>
-                  </linearGradient>
-                </defs>
-                <rect width="320" height="180" fill="url(#connGrad)"/>
-                <pattern id="connDots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <circle cx="1" cy="1" r="0.8" fill="#3b82f6" fill-opacity="0.12"/>
-                </pattern>
-                <rect width="320" height="180" fill="url(#connDots)"/>
-                <rect x="14" y="10" width="292" height="20" rx="5" fill="#111c35" stroke="#1e3a8a" stroke-opacity="0.5" stroke-width="1"/>
-                <rect x="22" y="15" width="40" height="5" rx="2" fill="url(#connAccent)" fill-opacity="0.8"/>
-                <circle cx="286" cy="20" r="5" fill="#1e3a8a" stroke="#2563eb" stroke-opacity="0.5" stroke-width="1"/>
-                <circle cx="268" cy="20" r="5" fill="#1e3a8a" stroke="#2563eb" stroke-opacity="0.5" stroke-width="1"/>
-                <rect x="14" y="36" width="180" height="62" rx="5" fill="#111c35" stroke="#1e3a8a" stroke-opacity="0.5" stroke-width="1"/>
-                <circle cx="28" cy="49" r="7" fill="#1e3a8a" stroke="#2563eb" stroke-opacity="0.5" stroke-width="1"/>
-                <circle cx="28" cy="46" r="3" fill="#60a5fa" fill-opacity="0.6"/>
-                <path d="M21 56c0-3.9 3.1-5 7-5s7 1.1 7 5" fill="#60a5fa" fill-opacity="0.35"/>
-                <rect x="40" y="44" width="50" height="4" rx="1" fill="#93c5fd" fill-opacity="0.7"/>
-                <rect x="40" y="52" width="28" height="3" rx="1" fill="#60a5fa" fill-opacity="0.3"/>
-                <rect x="22" y="63" width="148" height="3.5" rx="1.5" fill="#60a5fa" fill-opacity="0.35"/>
-                <rect x="22" y="70" width="120" height="3.5" rx="1.5" fill="#60a5fa" fill-opacity="0.25"/>
-                <rect x="22" y="82" width="156" height="1" rx="0.5" fill="#1e3a8a" fill-opacity="0.6"/>
-                <path d="M28 88c0-1.5 2-3 3.5-1.5 1.5-1.5 3.5 0 3.5 1.5 0 1-1.5 2.5-3.5 4-2-1.5-3.5-3-3.5-4z" fill="url(#connLike)" fill-opacity="0.9">
-                  <animate attributeName="fill-opacity" values="0.9;0.5;0.9" dur="2s" repeatCount="indefinite"/>
-                </path>
-                <rect x="38" y="87" width="18" height="3" rx="1" fill="#f43f5e" fill-opacity="0.5"/>
-                <rect x="62" y="86" width="9" height="7" rx="2" fill="none" stroke="#60a5fa" stroke-opacity="0.5" stroke-width="1"/>
-                <path d="M63 93l-1 2 2-1" fill="#60a5fa" fill-opacity="0.5"/>
-                <rect x="74" y="87" width="14" height="3" rx="1" fill="#60a5fa" fill-opacity="0.3"/>
-                <path d="M94 87l3 3-3 3M91 90h6" stroke="#34d399" stroke-opacity="0.6" stroke-width="1" fill="none" stroke-linecap="round"/>
-                <rect x="100" y="87" width="12" height="3" rx="1" fill="#34d399" fill-opacity="0.3"/>
-                <rect x="126" y="58" width="180" height="62" rx="5" fill="#0d1829" stroke="#1e3a8a" stroke-opacity="0.4" stroke-width="1"/>
-                <circle cx="140" cy="71" r="7" fill="#1e3a8a" stroke="#60a5fa" stroke-opacity="0.4" stroke-width="1"/>
-                <circle cx="140" cy="68" r="3" fill="#818cf8" fill-opacity="0.6"/>
-                <path d="M133 78c0-3.9 3.1-5 7-5s7 1.1 7 5" fill="#818cf8" fill-opacity="0.3"/>
-                <rect x="152" y="66" width="44" height="4" rx="1" fill="#a5b4fc" fill-opacity="0.6"/>
-                <rect x="152" y="74" width="28" height="3" rx="1" fill="#818cf8" fill-opacity="0.3"/>
-                <rect x="134" y="86" width="148" height="3.5" rx="1.5" fill="#818cf8" fill-opacity="0.3"/>
-                <rect x="134" y="92" width="100" height="3.5" rx="1.5" fill="#818cf8" fill-opacity="0.2"/>
-                <rect x="134" y="104" width="156" height="1" rx="0.5" fill="#1e3a8a" fill-opacity="0.6"/>
-                <path d="M140 110c0-1.5 2-3 3.5-1.5 1.5-1.5 3.5 0 3.5 1.5 0 1-1.5 2.5-3.5 4-2-1.5-3.5-3-3.5-4z" fill="#f43f5e" fill-opacity="0.4"/>
-                <rect x="104" y="148" width="112" height="22" rx="11" fill="url(#connAccent)" fill-opacity="0.95">
-                  <animate attributeName="opacity" values="1;0.7;1" dur="3s" repeatCount="indefinite"/>
-                </rect>
-                <rect x="116" y="156" width="88" height="5" rx="2" fill="white" fill-opacity="0.85"/>
-              </svg>
+          <article class="project-card project-card--site">
+            <div class="project-visual project-visual--site">
+              <img src="images/site-preview.jpg" alt="Walid Abousoukkar personal website">
             </div>
-            <h3 class="project-title">UMass Connect</h3>
+            <h3 class="project-title">Personal Website</h3>
             <ul class="project-tags">
-              <li class="project-tag">Full Stack</li>
-              <li class="project-tag">React</li>
-              <li class="project-tag">Tailwind</li>
-              <li class="project-tag">Flask</li>
-              <li class="project-tag">MongoDB</li>
+              <li class="project-tag">HTML</li>
+              <li class="project-tag">CSS</li>
+              <li class="project-tag">JavaScript</li>
             </ul>
-            <p class="project-desc">Designed and built a campus social platform for UMass students: posts, likes, comments, and reposts with JWT-secured auth. Fully responsive with a component-driven React frontend and a RESTful Flask API.</p>
+            <p class="project-desc">Built from scratch with HTML, CSS, and JavaScript. No frameworks or build tools. Animated background, scroll-reveal sections, and a responsive layout.</p>
+            <a class="project-link" href="https://github.com/WalidAbousoukkar/personal-website" target="_blank" rel="noopener">View on GitHub</a>
           </article>
           <article class="project-card project-card--redline">
             <div class="project-visual project-visual--redline" aria-hidden="true">
@@ -1160,13 +1058,14 @@
                 <text x="220" y="140" text-anchor="end" fill="#e2e8f0" font-size="9" font-family="ui-monospace, monospace">14 min</text>
               </svg>
             </div>
-            <h3 class="project-title">Red Line</h3>
+            <h3 class="project-title">Red Line MBTA App</h3>
             <ul class="project-tags">
               <li class="project-tag">Next.js</li>
               <li class="project-tag">TypeScript</li>
               <li class="project-tag">Tailwind</li>
               <li class="project-tag">SQLite</li>
               <li class="project-tag">MBTA API</li>
+              <li class="project-tag">Vercel</li>
             </ul>
             <p class="project-desc">A commute screen for one Red Line trip. Save a home stop, a work stop, and a walk time, then see when to leave, the next trains on that branch, and only the alerts that affect the trip.</p>
             <a class="project-link" href="https://github.com/WalidAbousoukkar/Red-Line" target="_blank" rel="noopener">View on GitHub</a>
